@@ -38,6 +38,27 @@
 
         <button onclick="clickBtnjs">javascript click me</button>
     </div>
+
+    <!-- vue 플러그인 임포트   -->
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+    <script>
+        new Vue({
+            /* edtmc^2w */
+            el: "#app",
+            data: {
+                /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+                message: 'Hello, Vue!!!'
+            },
+            //template: ``,
+            methods: {
+                /* 이벤트 핸들러 등록 */
+                clickBtn: function () {
+                    this.$data.message = "화면을 바꿔"
+                }
+            }
+        });
+
+    </script>
 </body>
 
 </html>
