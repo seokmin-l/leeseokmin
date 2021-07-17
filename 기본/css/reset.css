@@ -1,0 +1,144 @@
+@charset "UTF-8";
+body {
+  font-family: 'Noto Sans KR',sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a, abbr, acronym, address, applet, article, aside, audio, b, bdi, bdo, big, blockquote, body, button, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, header, hgroup, h1, h2, h3, h4, h5, h6, html, i, iframe, img, input, ins, kbd, label, legend, li, map, mark, menu, nav, object, ol, p, pre, q, rp, rt, ruby, s, samp, section, select, small, span, strike, strong, summary, sub, sup, table, tbody, td, textarea, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  border: 0;
+  vertical-align: baseline;
+}
+input, select, textarea {
+  padding: 0;
+  margin: 0;
+}
+legend, caption, hr {
+  display: none;
+}
+ol, ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  outline: 0;
+}
+a:hover {
+  text-decoration: underline;
+}
+button {
+  outline: 0;
+}
+img {
+  vertical-align: top;
+}
+/*
+  사이트 전체에 공통으로 사용될 변수명
+*/
+/***  font  ***/
+/*** color ***/
+/* 기본 색상 */
+/* 주요 색상 */
+/* 주식 */
+/* 텍스트 색상 */
+/* 백그라운드 색상 */
+/*
+  *** 모듈 위 간격 ***
+*/
+/*** 모듈 내부 간격 ***/
+/*** 타이틀 아래 간격 ***/
+/*
+  사이트 전체에 사용할 믹스인을 정의한다.
+*/
+/*** media query ***/
+/*** images ***/
+/*** 말줄임 ***/
+/*** 가상선택자 라인 ***/
+/*** 가상선택자 ***/
+/***clearboth ***/
+/*주식등락*/
+/* 소개 백그라운드 */
+/*** 기본 CSS 셋팅 ***/
+html, body {
+  width: 100%;
+  height: auto;
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url(//fonts.zumst.com/notosanskr/NotoSansKR-Thin.woff2) format("woff2"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Thin.woff) format("woff"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Thin.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url(//fonts.zumst.com/notosanskr/NotoSansKR-Light.woff2) format("woff2"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Light.woff) format("woff"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Light.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.zumst.com/notosanskr/NotoSansKR-Regular.woff2) format("woff2"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Regular.woff) format("woff"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Regular.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.zumst.com/notosanskr/NotoSansKR-Medium.woff2) format("woff2"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Medium.woff) format("woff"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Medium.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.zumst.com/notosanskr/NotoSansKR-Bold.woff2) format("woff2"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Bold.woff) format("woff"), url(//fonts.zumst.com/notosanskr/NotoSansKR-Bold.otf) format("opentype");
+}
+
+body {
+  -webkit-text-size-adjust: none;
+  letter-spacing: -.8px;
+  line-height: 1;
+  font-size: 16px;
+  word-break: break-all;
+  color: #000;
+  font-family: 'AppleSDGothicNeo-Regular', 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+button {
+  vertical-align: top;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  outline: 0;
+  font-family: inherit;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', 'AppleSDGothicNeo-Regular', sans-serif;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
