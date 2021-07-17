@@ -63,7 +63,9 @@
         <div class="container">
           <i class="icon write"></i>
           <p class="section-tit">내 이글루가 가장 핫했던 기간은 <span class="color-navy font-bold">7월</span> 이예요</p>
-          <div>CHART</div>
+          <div>
+            <canvas id="myChart" width="400" height="400"></canvas>
+          </div>
           <p class="section-tit">이글루스는 주로 <span class="color-default font-bold">PC</span>를 통해서<br>글을 많이 쓰시는군요!</p>
           <div>CHART 2개</div>
         </div>
@@ -123,6 +125,54 @@
       </footer>
     </div>
     <script src="js/chart.min.js"></script>
-    
+    <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var ChartHelper = {
+        chartColors: {
+            red: 'rgb(255, 99, 132)'
+            , orange: 'rgb(255, 159, 64)'
+            , yellow: 'rgb(255, 205, 86)'
+            , green: 'rgb(75, 192, 192)'
+            , blue: 'rgb(54, 162, 235)'
+            , purple: 'rgb(153, 102, 255)'
+            , grey: 'rgb(201, 203, 207)'
+        }
+    };
+    var color = Chart.helpers.color;
+    var data1 = null;
+    var data2 = null;
+    var barChartData = null;
+      var barChartData = {
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월'
+, '9월', '10월', '11월', '12월']
+        , datasets: [
+            {
+                label: 'DataSet1'
+                , backgroundColor:color(ChartHelper.chartColors.blue).alpha(0.5).rgbString()
+                , borderColor: ChartHelper.chartColors.blue
+                , borderWidth: 1
+                , data: data2
+            }
+            , {
+                label: 'DataSet2'
+                , backgroundColor:color(ChartHelper.chartColors.red).alpha(0.5).rgbString()
+                , borderColor: ChartHelper.chartColors.red
+                , borderWidth: 1
+                , data: data1
+            }
+        ]
+    };
+      var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: barChartData,
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+      </script>
   </body>
 </html>
