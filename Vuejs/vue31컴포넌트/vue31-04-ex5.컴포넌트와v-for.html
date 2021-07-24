@@ -52,6 +52,39 @@
     </div>
     <hr>
 
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+
+var ComponentBox = {
+    props: ["num"] ,
+    template: `
+    <span style="display:inline-block; font-size:3em; border:1px dashed blue; padding:10px 20px; margin:5px; text-align:center;">
+        {{num}}
+    </span>
+    `,
+};
+
+new Vue({
+    el: "#app",
+    data: {
+        arr: [0,1,2,3,4,5]
+    },
+    methods: {
+        clickAddBox () {
+            this.$set(this.$data.arr, this.$data.arr.length, this.$data.arr.length)
+        }
+    },
+    components: {
+        'component-box': ComponentBox
+    },
+});
+
+</script>
 </body>
 
 </html>

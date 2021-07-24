@@ -78,33 +78,92 @@
 
     <div id="app">
         <!-- component-header -->
+        <!-- <header>
+            Header
+        </header> -->
+        <component-header></component-header>
+        <component-content></component-content>
+        <!-- component-content -->
+        <!-- <div id="content">
+            <p>Content</p> -->
+
+            <!-- component-aside -->
+            <!-- <aside>
+                Aside
+            </aside> -->
+
+            <!-- component-content-list -->
+            <!-- <div id="content-list">
+                List
+            </div>
+        </div> -->
+        <component-footer></component-footer>
+        <!-- component-footer -->
+        <!-- <footer>
+            Footer
+        </footer> -->
+    </div>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+    var ComponentAside = {
+        template: `
+        <aside>
+            Aside
+        </aside>
+        `,
+    }
+    var ContentList = {
+        template: `
+        <div id="content-list">
+            List
+        </div>
+        `,
+    }
+
+    var ComponentHeader ={
+        template: `
         <header>
             Header
         </header>
-        
-        <!-- component-content -->
+        `,
+    };
+    var ComponentContent ={
+        template: `
         <div id="content">
-            <p>Content</p>
-            
-            <!-- component-aside -->
-            <aside>
-                Aside
-            </aside>
-            
-            <!-- component-content-list -->
-            <div id="content-list">
-                List
-            </div>
-        </div>
-        
-        <!-- component-footer -->
+        <component-aside></component-aside>
+        <content-list></content-list>
+        </div>`,
+        components: {
+            'component-aside': ComponentAside,
+            'content-list': ContentList
+        },
+    };
+    var ComponentFooter ={
+        template: `
         <footer>
             Footer
         </footer>
-    </div>
+        `,
+    };
 
-    
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        components: {
+            'component-header': ComponentHeader,
+            'component-content': ComponentContent,
+            'component-footer': ComponentFooter
+        },
+    });
 
+</script>
 </body>
 
 </html>

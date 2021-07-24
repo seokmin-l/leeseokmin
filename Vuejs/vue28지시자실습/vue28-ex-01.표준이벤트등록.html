@@ -123,13 +123,14 @@
             "vue23-01.v-for와배열.html" 를 참조하여 option 부분을 v-for 를 사용하도록 수정하시오.
 
         </xmp>
-        <select id="sel" change="selectchange">
-            <option value="../images/strawberry.gif">딸기</option>
+        <select id="sel" v-on:change="selectchange">
+            <option :value="option.value" v-for="(option, index) in options" :key="index">{{option.text}}</option>
+            <!-- <option value="../images/strawberry.gif">딸기</option>
             <option value="../images/banana.gif">바나나</option>
-            <option value="../images/apple.gif" selected>사과</option>
+            <option value="../images/apple.gif" selected>사과</option> -->
         </select>
 
-        <img id="img" src="img_select" />
+        <img id="img" v-bind:src="img_select" />
         <hr />
 
         <xmp>
@@ -158,7 +159,13 @@
                 /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
                 img_image3: '../images/image4.jpg',
                 img_but1: '../images/but2.gif',
-                img_swap: '../images/img_swap_off.png'
+                img_swap: '../images/img_swap_off.png',
+                img_select: null,
+                options: [
+                    {value: '../images/strawberry.gif', text: '딸기'},
+                    {value: '../images/banana.gif', text: '바나나'},
+                    {value: '../images/apple.gif', text: '사과'}
+                ]
             },
             //template: ``,
             methods: {
@@ -183,15 +190,27 @@
                 },
                 spanmouseover: function(event) {
                     console.log('mouseover')
+                    event.target.style.backgroundColor = 'yellow'
+                    // yellow
                 },
                 spanmousedown: function(event) {
                     console.log('mousedown')
+                    event.target.style.backgroundColor = 'blue'
+                    // blue
                 },
                 spanmouseup: function(event) {
                     console.log('mouseup')
+                    event.target.style.backgroundColor = 'pink'
+                    // pink
                 },
                 spanmouseout: function(event) {
                     console.log('mouseout')
+                    event.target.style.backgroundColor = 'red'
+                    // red
+                },
+                selectchange: function(event) {
+                    console.log(event.target.value)
+                    this.$data.img_select = event.target.value;
                 }
             },
             components: {

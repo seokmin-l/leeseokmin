@@ -55,7 +55,78 @@
         <local-component v-bind:localmsg="localmsg1"></local-component>
         <local-component v-bind:localmsg="localmsg2"></local-component>
     </div>
+    <script>
+        var localmsg1 = "인스턴스에서 지역 컴포넌트로 넘겨진 메시지1";
+        var localmsg = localmsg1;
+        var localComponent = function(localmsg) {
+            console.log(localmsg)
+        }
+        localComponent(localmsg1)
+    </script>
+    <!-- vue 플러그인 임포트   -->
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+    <script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+    <script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+    <script>
+        Vue.component("GlobalComponent", {
+            /* pdtmc^2w */
+            props: ["localmsg"] ,
+            template: `
+            <div>
+                지역 컴포넌트가 등록되었습니다!
+                <span style="border: 1px dashed blue; background-color:lightgray; padding: 5px;"
+                    onclick="lclick">
+                    {{localmsg}}
+                </span>
+            </div>
+            `,
+            methods: {
+                /* 이벤트 핸들러 등록 */
+                lclick () {
+                    console.log(event.target.innerHTML)
+                }
+            },
+        });
+        var LocalComponent = {
+            /* pdtmc^2w */
+            props: ["propsdata"] ,
+            template: `
+            <div>
+                전역 컴포넌트
+                <button v-on:click="gclick">{{propsdata}}</button>
+            </div>
+            `,
+            methods: {
+                /* 이벤트 핸들러 등록 */
+                gclick () {
+                    console.log(event.target.innerHTML)
+                }
+            },
+        };
+        new Vue({
+            /* edtmc^2w */
+            el: "#app",
+            data: {
+                /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+                globalmsg1: 'globalmsg1에서 메세지',
+                globalmsg2: 'globalmsg2 메세지',
+                localmsg1: 'localmsg1 메세지',
+                localmsg2: 'localmsg2 메세지',
+            },
+            //template: ``,
+            methods: {
+                /* 이벤트 핸들러 등록 */
 
+            },
+            components: {
+                /* 지역 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+                'local-component': LocalComponent
+            },
+        });
+
+    </script>
 </body>
 
 </html>
