@@ -111,7 +111,7 @@ export default {
         console.log("mounted");
     },
     updated: function () {
-        console.log("updated");
+        console.log("updated", this.$props.todoItems);
     }
 };
 </script>

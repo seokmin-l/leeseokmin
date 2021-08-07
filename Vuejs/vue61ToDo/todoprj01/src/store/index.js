@@ -5,18 +5,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     actions: {
-        addTodo: function( mutations/* 고정 */, newTodoItem ){
-            mutations.commit("addTodo", newTodoItem );
+        addTodo(mutations /* 고정 */, newTodoItem) {
+            mutations.commit("addTodo", newTodoItem);
         },
-        doneToggle: function( mutations/* 고정 */, id ){
-            mutations.commit("doneToggle", id );
+        doneToggle(mutations /* 고정 */, id) {
+            mutations.commit("doneToggle", id);
         },
-        removeTodo: function( mutations/* 고정 */, id, index ){
-            mutations.commit("removeTodo", id, index );
+        removeTodo(mutations /* 고정 */, id) {
+            mutations.commit("removeTodo", id);
         },
-        clearAll: function( mutations/* 고정 */){
+        clearAll(mutations /* 고정 */) {
             mutations.commit("clearAll");
-        },
+        }
     },
     mutations: {
         /* 왜 mutations 를 사용하나? state 를 바꾸기 위해서
@@ -24,13 +24,19 @@ export default new Vuex.Store({
          * 첫번째인자: 무조건 state 로 고정.
          * 두번째인자: 값. mutations.commit() 호출시 넘겨지는 값.
          * */
-        addTodo: function(state/* 고정 */, newTodoItem/* mutations.commit 호출시 넘겨지는 값 */){
-            //console.log(event.target); // TodoInput 의 Button 정보
-
+        addTodo(
+            state /* 고정 */,
+            newTodoItem /* mutations.commit 호출시 넘겨지는 값 */
+        ) {
             // todoItems에서 최대 id 값을 구하는 방법.
             // 방법1. todoItems.reduce() 를 사용하여 newId를 구하는 방법
             // 방법2. 방법2. todoItems.reduce() 를 사용하여 최대 id 값을 찾기
             // 방법3. todoItems.map()과 Math.max()를 사용하여 max id를 찾는 방법
+
+            // newTodoItem 값이 없으면 종료한다. 빈값 호출 방지.
+            if (newTodoItem && newTodoItem.trim() === "") {
+                return;
+            }
 
             // 방법1. todoItems.reduce() 를 사용하여 최대 id 값을 갖고있는 object 를 찾기
             let maxObj = null;
@@ -49,7 +55,7 @@ export default new Vuex.Store({
                     id: 0
                 };
             }
-            var newid = maxObj.id + 1;
+            const newid1 = maxObj.id + 1;
 
             // 방법2. todoItems.reduce() 를 사용하여 최대 id 값을 찾기
             let maxid = 0;
@@ -61,12 +67,25 @@ export default new Vuex.Store({
                 // 빈 배열인 경우
                 maxid = 0;
             }
-            newid = maxid + 1;
+            const newid2 = maxid + 1;
+
+            // 방법3. todoItems.map()과 Math.max()를 사용하여 newId를 구하는 방법
+            let arrIds = [];
+            if (state.todoItems.length > 0) {
+                arrIds = state.todoItems.map(function (el) {
+                    return el.id;
+                });
+            }
+            const newid3 = Math.max(...arrIds) + 1;
+
+            if ((newid1 === newid2) === newid3) {
+                console.log("newid1 === newid2 === newid3");
+            }
 
             // 추가할 객체 생성:
             // input에 입력된 값 ==> newTodoItem ;
-            var newTodo = {
-                id: newid,
+            const newTodo = {
+                id: newid1,
                 todo: newTodoItem,
                 done: false
             };
@@ -75,38 +94,54 @@ export default new Vuex.Store({
             state.todoItems.push(newTodo);
             //state.todoItems[state.todoItems.length] = newTodo;
             //this.$set( state.todoItems, state.todoItems.length, newTodo );
-
         },
-        doneToggle: function(state/* 고정 */, id/* mutations.commit 호출시 넘겨지는 값 */){
-             // 방법1
-            // state.todoItems[index].done = !state.todoItems[index].done ;
-
-            // 방법2
-            // this.$set( state.todoItems[index], "done", !state.todoItems[index].done );
-
-            // 방법3
+        doneToggle(
+            state /* 고정 */,
+            id /* mutations.commit 호출시 넘겨지는 값 */
+        ) {
             // 복제 후 재할당 해야함
-            const indexFind = state.todoItems.findIndex((item) => {
-                return item.id === id;
+            const index = state.todoItems.findIndex((item) => {
+                //return item.id === id;
+                if (item.id === id) {
+                    return true;
+                } else {
+                    return false;
+                }
             });
-debugger;
-            if (indexFind >= 0) {
-                const newobj = {
-                    ...state.todoItems[indexFind],
-                    done: !state.todoItems[indexFind].done
-                };
 
-                state.todoItems[indexFind] = newobj;
-                //this.$set(state.todoItems, indexFind, newobj);
+            if (index >= 0) {
+                state.todoItems[index].done = !state.todoItems[index].done;
+                //this.$set( state.todoItems[index], "done", !state.todoItems[index].done );
             }
         },
-        removeTodo: function(state/* 고정 */, id, index/* mutations.commit 호출시 넘겨지는 값 */){
-            // 참조 타입 변수이면 재할당(=== 깊은 복사) 필요.
-            // 방법1: array.splice() 을 사용하는 방법
-            // 방법2: array.map() 을 사용하는 방법
-            state.todoItems.splice(index, 1);
+        removeTodo(
+            state /* 고정 */,
+            id /* mutations.commit 호출시 넘겨지는 값 */
+        ) {
+            // 복제 후 재할당 해야함
+            // 방법1: array.filter() 을 사용하여 새로운 배열을 만드는 방법
+            state.todoItems = state.todoItems.filter((item) => {
+                //return item.id !== id;
+                if (item.id !== id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            // 방법2: array.findIndex()와 array.splice() 을 사용하여 새로운 배열을 만드는 방법
+            const index = state.todoItems.findIndex((item) => {
+                //return item.id === id;
+                if (item.id === id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            if (index >= 0) {
+                state.todoItems.splice(index, 1);
+            }
         },
-        clearAll: function(state/* 고정 */){
+        clearAll(state /* 고정 */) {
             // 전체 삭제
             // state.todoItems = [];
             state.todoItems = [];
@@ -127,8 +162,8 @@ debugger;
          * 컴포넌트에서는 computed를 사용하여 store의 state 변경 정보를 자동으로 가져오게 된다.
          * 예시) message()=> store.getters.인자;
          */
-        todoItems: function(state/* 고정 */){
+        todoItems: function (state /* 고정 */) {
             return state.todoItems;
-        },
-    },
+        }
+    }
 });

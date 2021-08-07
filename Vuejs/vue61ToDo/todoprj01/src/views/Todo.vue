@@ -61,9 +61,9 @@ export default {
             // this.$set( this.$data.todoItems[index], "done", !this.$data.todoItems[index].done );
             // 방법3
             // 복제 후 재할당 해야함
-            store.dispatch("addtodo", id);
+            store.dispatch("doneToggle", id);
         },
-        removeTodo(id, index) {
+        removeTodo(event, id, index) {
             console.log(event.target);
             // 참조 타입 변수이면 재할당(=== 깊은 복사) 필요.
             // 방법1: array.splice() 을 사용하는 방법
