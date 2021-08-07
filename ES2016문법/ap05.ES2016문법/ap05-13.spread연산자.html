@@ -37,6 +37,38 @@
         // ES6 코딩
     </script>
     </xmp>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* ES5로 변환 */</script>
+    <script type="text/babel">
+        // const cities = ["서울", "부산", "제주"];
+        // console.log(...cities);
+        //const east = ['u', 'k', 't'];
+        //const west = ['n', 'c', 'g'];
+        //const countries = [...east, ...west];
+        //console.log(countries)
+        //let lakes = ['경포호', '화진호', '송지호', '청초호'];
+        //let [first, ...rest] = lakes;
+        //console.log(first, rest)
+
+        // let [city, ...cityrest] = [...east, ...west];
+        // console.log(cityrest)
+        const car1 = {
+            type:'t1',
+            color: 's1',
+            model: '2017'
+        }
+        const car2 = {
+            type:'t2',
+            color: 's2',
+            model: '2019'
+        }
+        const {type} = car1;
+        console.log(car1)
+
+        const func = function ({type}){
+            console.log(type);
+        }
+        func({...car1, ...car2})
+    </script>
 </body>
 
 </html>
